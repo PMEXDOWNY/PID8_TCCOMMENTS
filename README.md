@@ -6,6 +6,10 @@
 
 ---
 
+El objetivo es crear un motor de texto que detecte el texto escrito para determinar si un mensaje es apropiado y puede pasar o si debe ser bloqueado automáticamente. El reto es que el motor pueda entender contexto para que no banee palabras que se usarían de manera casual en un videojuego.
+
+---
+
 ## 1. Resumen ejecutivo
 
 Construir un motor de moderación de texto que (a) determine si un texto está escrito en inglés y (b) detecte y filtre lenguaje ofensivo en ese idioma, apoyado en una base de datos pública de palabras prohibidas **depurada, enriquecida y normalizada** por nosotros.
