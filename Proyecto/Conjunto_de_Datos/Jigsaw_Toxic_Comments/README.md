@@ -1,17 +1,22 @@
-# Jigsaw Toxic Comments — comentarios de Wikipedia con etiquetas de toxicidad
+# Jigsaw Toxic Comments: comentarios de Wikipedia con etiquetas de toxicidad
 
 Material de apoyo del curso. Dataset real de referencia (benchmark) para
-clasificación multi-etiqueta de toxicidad. Ver `FUENTE.md` para origen y descarga.
+clasificación multi-etiqueta de toxicidad. El origen y la descarga están en
+`FUENTE.md`.
 
 ## Archivo
 
-- `jigsaw_train.csv.gz` (26 MB comprimido; 66 MB descomprimido) → `gunzip -k jigsaw_train.csv.gz`
+`jigsaw_train.csv.gz` (26 MB comprimido, 66 MB descomprimido). Para
+descomprimir sin borrar el original: `gunzip -k jigsaw_train.csv.gz`.
 
 ## Perfil
 
-- **Filas:** 159,571 comentarios (inglés, páginas de discusión de Wikipedia).
-- **Columnas:** `id, comment_text, toxic, severe_toxic, obscene, threat, insult, identity_hate` (etiquetas binarias 0/1, multi-etiqueta).
-- **Longitud del texto:** media 394 caracteres, mediana 205, máximo 5,000 — textos mucho más largos que un chat de videojuego.
+- Filas: 159,571 comentarios en inglés de páginas de discusión de Wikipedia.
+- Columnas: `id, comment_text, toxic, severe_toxic, obscene, threat, insult,
+  identity_hate`. Las seis etiquetas son binarias (0/1) y pueden combinarse
+  en un mismo comentario.
+- Longitud del texto: media 394 caracteres, mediana 205, máximo 5,000.
+  Textos mucho más largos que un chat de videojuego.
 
 ## Distribución de etiquetas
 
@@ -25,14 +30,15 @@ clasificación multi-etiqueta de toxicidad. Ver `FUENTE.md` para origen y descar
 | threat | 478 | 0.3% |
 | sin ninguna etiqueta (limpio) | 143,346 | 89.8% |
 
-Fuertemente desbalanceado; las etiquetas se traslapan (un comentario puede ser
-`toxic` + `obscene` + `insult` a la vez).
+Está fuertemente desbalanceado y las etiquetas se traslapan: un comentario
+puede ser a la vez `toxic`, `obscene` e `insult`.
 
 ## Nota para el proyecto
 
-Este dataset **no es de videojuegos**: sirve como benchmark comparativo, para
-pre-entrenar/transferir modelos, o para discutir el cambio de dominio
-(comentarios largos de Wikipedia vs. mensajes cortos de chat in-game como CONDA).
+Este dataset no es de videojuegos. Sirve como benchmark comparativo, para
+pre-entrenar o transferir modelos, o para discutir el cambio de dominio entre
+comentarios largos de Wikipedia y mensajes cortos de chat in-game como los de
+CONDA.
 
 ## Exploración rápida
 
@@ -40,3 +46,6 @@ pre-entrenar/transferir modelos, o para discutir el cambio de dominio
 gunzip -k jigsaw_train.csv.gz
 python3 ../../Herramientas/explorar_dataset.py jigsaw_train.csv --texto comment_text --etiqueta toxic
 ```
+
+Las figuras de la exploración inicial están en
+`Proyecto/Documentacion/02_eda_inicial.md`.
