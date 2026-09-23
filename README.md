@@ -9,3 +9,7 @@ También hay que limpiar cada uno por su lado. CONDA tiene 7 mensajes sin texto,
 Revisen también qué tan desbalanceadas están las clases en cada dataset (en CONDA la categoría O domina con cerca del 74% de los mensajes, en Jigsaw menos del 10% de los comentarios están marcados como tóxicos) y grafiquen esa distribución, porque varios de los artículos de su propia matriz tratan justo el problema de desbalance de clases en este tipo de datos.
 
 Por último, revisen cuántas de las fuentes que tienen en la matriz ya tienen su PDF correspondiente en Fuentes, la cobertura ya va muy bien pero no está completa.
+
+30 Septiembre -> Unir ambos conjuntos de datos, revisarlos/ pre-procesarlos.
+
+07 Octubre -> Apartado exploratorio del conjunto de datos.
