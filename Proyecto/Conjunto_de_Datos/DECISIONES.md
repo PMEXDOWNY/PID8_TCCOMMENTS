@@ -46,9 +46,9 @@ Que `O` incluya groserías sin objetivo es justo el caso del proyecto: no bloque
 ## 3. Duplicados: se marcan, no se borran
 
 - `is_dup_text`: 13,864 filas con texto repetido (sin distinguir mayúsculas).
-- `is_conflict_text`: 5,286 filas cuyo texto aparece con etiquetas `is_toxic` distintas.
+- `is_conflict_text`: 5,286 filas que pertenecen a textos que aparecen con etiquetas `is_toxic` distintas. Son **todas** las apariciones de esos textos (84 textos distintos en CONDA, 27 filas en Jigsaw), no solo las que discrepan. Las filas que realmente contradicen a la etiqueta mayoritaria en CONDA son 136 (ver `Exploratorio/EXPLORATORIO.md`).
 
-No se borran porque son mensajes reales del chat ("gg", "lol", "ez" se repiten miles de veces) y su etiqueta depende del contexto. El caso típico es `ez`: 395 de sus 399 apariciones son `I`, y casi todos los `gg` son `O`. Borrarlos cambiaría la distribución real. Para modelar se puede filtrar por estas columnas.
+No se borran porque son mensajes reales del chat ("gg", "lol", "ez" se repiten cientos de veces) y borrarlos cambiaría la distribución real. Casi todos son consistentes: `ez` es `I` en 395 de sus 399 apariciones y `gg` es `O` casi siempre. Para modelar se puede filtrar por estas columnas.
 
 ## 4. Splits
 
