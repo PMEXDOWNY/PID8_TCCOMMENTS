@@ -26,6 +26,6 @@ Cómo evaluar. En CONDA separen train y test por partida usando group_id, nunca 
 
 Todo el modelado va en Proyecto/Modelado, con scripts que corran desde la raíz del repo, una tabla de resultados por modelo y por fuente, las figuras y un RESULTADOS.md donde expliquen qué salió y por qué. Esa tabla es la sección de resultados del artículo de investigación.
 
-26 Octubre -> FUENTE.md, paper de CONDA en matriz y Fuentes, filtro de palabras, logística y SVM por fuente con split por partida, tabla con las dos tasas (grosería casual bloqueada, toxicidad implícita detectada).
+28 Octubre -> FUENTE.md, paper de CONDA en matriz y Fuentes, filtro de palabras, logística y SVM por fuente con split por partida, tabla con las dos tasas (grosería casual bloqueada, toxicidad implícita detectada).
 
-02 Noviembre -> BiGRU o LSTM, BERT o RoBERTa al menos en CONDA, experimento de contexto y de transferencia entre fuentes, matriz completa con sus PDFs, todo en Proyecto/Modelado/RESULTADOS.md.
+04 Noviembre -> BiGRU o LSTM, BERT o RoBERTa al menos en CONDA, experimento de contexto y de transferencia entre fuentes, matriz completa con sus PDFs, todo en Proyecto/Modelado/RESULTADOS.md.
