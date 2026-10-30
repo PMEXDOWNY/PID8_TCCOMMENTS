@@ -2,7 +2,7 @@
 
 Procedencia de los dos conjuntos de datos que se usan en el proyecto. Los datos originales se conservan sin modificar en `CONDA/` y `Jigsaw_Toxic_Comments/`; toda la limpieza se hace en `preprocesar.py` y queda en `Unificado/`.
 
-> **Fecha de descarga.** Los descargó Carlos Saavedra de su sitio original, aproximadamente 2 días antes de la primera entrega (hacia el 28 de septiembre de 2026). La fecha es la que indica quien los descargó; el repo no guarda ese dato. Lo único que el repo permite comprobar es cuándo entraron los archivos a GitHub: el **31 de agosto de 2026**, en el commit `bae25ed` ("Material de apoyo técnico del curso", Santiago Yustre Bautista).
+> **Fecha de descarga.** Los descargó Carlos Saavedra de su sitio original el **31 de agosto de 2026**. Es la fecha que indica quien los descargó; el repo no guarda ese dato, pero sí muestra que los archivos entraron a GitHub ese mismo día, en el commit `bae25ed` ("Material de apoyo técnico del curso", Santiago Yustre Bautista).
 
 ## CONDA
 
@@ -15,7 +15,7 @@ Procedencia de los dos conjuntos de datos que se usan en el proyecto. Los datos 
 | Paper | https://arxiv.org/abs/2106.06213 · https://aclanthology.org/2021.findings-acl.213/ |
 | Datos | https://github.com/usydnlp/CONDA |
 | Contenido | Chat de partidas de Dota 2, con etiqueta de intención por mensaje (`intentClass`: O, E, A, I) y etiquetas de tokens (`slotClasses`) |
-| Descargado de su sitio original | Carlos Saavedra, aproximadamente 2 días antes de la primera entrega (hacia el 28 de septiembre de 2026; fecha indicada por quien lo descargó) |
+| Descargado de su sitio original | Carlos Saavedra, el 31 de agosto de 2026 (fecha indicada por quien lo descargó) |
 | Entró al repo | 2026-08-31, commit `bae25ed` |
 
 Archivos y huellas SHA-256 (para comprobar que no cambiaron):
@@ -37,7 +37,7 @@ El lexicon agrupa vocabulario del juego por tipo. El proyecto usa la columna **T
 | Institución | Jigsaw y Conversation AI (Google/Alphabet), publicado en Kaggle |
 | Datos | https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge |
 | Contenido | Comentarios de páginas de discusión de Wikipedia, con 6 etiquetas binarias (`toxic`, `severe_toxic`, `obscene`, `threat`, `insult`, `identity_hate`) |
-| Descargado de su sitio original | Carlos Saavedra, aproximadamente 2 días antes de la primera entrega (hacia el 28 de septiembre de 2026; fecha indicada por quien lo descargó) |
+| Descargado de su sitio original | Carlos Saavedra, el 31 de agosto de 2026 (fecha indicada por quien lo descargó) |
 | Entró al repo | 2026-08-31, commit `bae25ed` |
 
 | Archivo | Filas | SHA-256 |
