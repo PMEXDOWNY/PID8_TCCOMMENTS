@@ -2,9 +2,6 @@
 __pycache__/
 *.pyc
 
-# Modelos de la demo: pesan ~420 MB (2 BERT). Se regeneran con Proyecto/Modelado/10_entrenar_demo.py
-Proyecto/Modelado/Demo/modelos/
-
 # Archivos del sistema
 .DS_Store
 Thumbs.db

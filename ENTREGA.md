@@ -76,7 +76,7 @@ Los experimentos con BERT usan GPU si hay; sin ella tardan mucho más. Los scrip
 ## Demo interactiva
 
 ```
-python Proyecto/Modelado/10_entrenar_demo.py    # una vez, ~12 min con GPU
+python Proyecto/Modelado/10_entrenar_demo.py    # solo si no tienes los modelos: ya vienen en el repo con Git LFS (630 MB)
 python Proyecto/Modelado/11_demo.py             # abre http://127.0.0.1:8765
 ```
 

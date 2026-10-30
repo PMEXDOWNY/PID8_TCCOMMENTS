@@ -279,5 +279,5 @@ Todos los scripts corren desde la raíz del repo. Los experimentos con BERT nece
 | `12_robustez.py` | Experimento de robustez a la ortografía alterada (sección 8): 12 métodos contra 10 conjuntos de prueba. Entrena un BERT con aumento (`Demo/modelos/bert_robusto.pt`, ~7 minutos con GPU). Salida: `Resultados/resultados_robustez.csv` y `.md`, `fig_robustez.png`. |
 | `normalizar.py` | Normalizador de texto contra disfraces (lo usan el experimento y la demo). |
 | `perturbar.py` | Generador de ortografía alterada: sirve para las pruebas y para aumentar los datos de entrenamiento. |
-| `10_entrenar_demo.py` | Entrena y guarda en `Demo/modelos/` los modelos de CONDA que usa la demo (los mismos que se evaluaron; ~12 minutos con GPU). Esa carpeta no está en git. |
+| `10_entrenar_demo.py` | Entrena y guarda en `Demo/modelos/` los modelos de CONDA que usa la demo (los mismos que se evaluaron; ~12 minutos con GPU). Los `.pt` (~630 MB en total) están en el repo con Git LFS, así que normalmente no hace falta correrlo (ver `Demo/LEEME.md`). |
 | `11_demo.py` | Demo local: escribes un mensaje y ves qué dice cada modelo (`http://127.0.0.1:8765`). Instrucciones y advertencias en `Demo/LEEME.md`. |

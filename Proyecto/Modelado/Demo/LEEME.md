@@ -16,7 +16,7 @@ Una página local (solo en tu computadora, `http://127.0.0.1:8765`) con un cuadr
 Desde la raíz del repo:
 
 ```
-python Proyecto/Modelado/10_entrenar_demo.py    # una sola vez (~12 min con GPU): entrena y guarda los modelos aquí en Demo/modelos/
+python Proyecto/Modelado/10_entrenar_demo.py    # solo si no tienes los modelos (ver abajo): ~12 min con GPU, los guarda en Demo/modelos/
 python Proyecto/Modelado/12_robustez.py         # opcional: entrena el BERT con aumento y mide la robustez (~25 min con GPU)
 python Proyecto/Modelado/11_demo.py             # arranca la demo; abre el navegador solo
 ```
@@ -25,7 +25,13 @@ python Proyecto/Modelado/11_demo.py             # arranca la demo; abre el naveg
 - `11_demo.py --puerto 9000` usa otro puerto si el 8765 está ocupado.
 - Ctrl+C en la terminal cierra la demo.
 
-La carpeta `modelos/` (unos 420 MB) no está en git: se genera con `10_entrenar_demo.py`.
+## Los modelos están en Git LFS
+
+La carpeta `modelos/` pesa unos **630 MB** (tres BERT de ~209 MB y dos archivos pequeños). Los `.pt` se guardan con [Git LFS](https://git-lfs.com), así que:
+
+- **Para tener los modelos:** instala Git LFS una vez (`git lfs install`) y clona el repo normal; los `.pt` se bajan solos. Si ya clonaste sin LFS, corre `git lfs pull`.
+- **Para clonar solo el código, sin los 630 MB:** `GIT_LFS_SKIP_SMUDGE=1 git clone <url>` (en Windows PowerShell: `$env:GIT_LFS_SKIP_SMUDGE=1; git clone <url>`). Los `.pt` quedan como archivos de texto pequeños y la demo no arranca con BERT hasta que corras `git lfs pull` o `10_entrenar_demo.py`.
+- **Límite de GitHub:** una cuenta gratuita incluye 1 GB de almacenamiento y 1 GB de descarga al mes para LFS, y cuenta contra el dueño del repositorio. Cada clone completo baja ~630 MB, así que pocas descargas al mes agotan la cuota; si pasa, los `.pt` dejan de bajarse hasta el mes siguiente y hay que regenerarlos con `10_entrenar_demo.py`.
 
 ## Qué esperar (y qué no)
 

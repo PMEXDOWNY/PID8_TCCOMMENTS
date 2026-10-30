@@ -3,7 +3,8 @@
 Uso (desde la raiz del repo):
     python Proyecto/Modelado/10_entrenar_demo.py
 
-Guarda en Proyecto/Modelado/Demo/modelos/ (esa carpeta no se sube a git: los BERT pesan ~220 MB cada uno):
+Guarda en Proyecto/Modelado/Demo/modelos/. Los BERT (*.pt, ~209 MB cada uno) estan en el repo con Git LFS: si clonaste con LFS
+ya los tienes y NO hace falta correr este script (solo si quieres reentrenarlos):
     lineales.joblib     TF-IDF (palabras y caracteres) + regresion logistica + SVM lineal, entrenados con todo el train de CONDA
     bert_binario.pt     BERT toxico / no toxico (mismo entrenamiento que 03_bert.py: 3 epocas, semilla 42, 80% de train)
     bert_4clases.pt     BERT con las 4 clases O, E, A, I (mismo entrenamiento que 04_cuatro_clases.py)

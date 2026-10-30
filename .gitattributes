@@ -1,0 +1,1 @@
+Proyecto/Modelado/Demo/modelos/*.pt filter=lfs diff=lfs merge=lfs -text
