@@ -1,9 +1,11 @@
 """Demo local: escribe un mensaje y mira que dice cada modelo.
 
 Uso (desde la raiz del repo):
-    python Proyecto/Modelado/10_entrenar_demo.py     # una vez: entrena y guarda los modelos (~12 min con GPU)
     python Proyecto/Modelado/11_demo.py              # abre http://127.0.0.1:8765 en el navegador
     python Proyecto/Modelado/11_demo.py --puerto 9000 --sin-bert     # sin BERT (arranca en segundos)
+
+Los modelos YA VIENEN ENTRENADOS en Demo/modelos/ (en el repo, con Git LFS): no hay que entrenar nada. Solo si alguien quiere
+reentrenarlos (opcional): python Proyecto/Modelado/10_entrenar_demo.py
 
 Solo escucha en tu computadora (127.0.0.1): nadie en la red puede entrar. No usa librerias nuevas.
 Los modelos son los de CONDA (chat de Dota 2 en ingles), los mismos que se evaluaron en RESULTADOS.md:
@@ -271,7 +273,7 @@ def main():
     ap.add_argument("--no-abrir", action="store_true", help="no abre el navegador solo")
     a = ap.parse_args()
     if not (DEMO / "lineales.joblib").exists():
-        print("Faltan los modelos. Corre antes: python Proyecto/Modelado/10_entrenar_demo.py")
+        print("Faltan los modelos de Demo/modelos/. Si clonaste el repo sin Git LFS, bajalos con: git lfs pull  (o reentrenalos con: python Proyecto/Modelado/10_entrenar_demo.py)")
     print("cargando modelos...", flush=True)
     modelos = Modelos(con_bert=not a.sin_bert)
     print("modelos listos:", ", ".join(modelos.disponibles), flush=True)

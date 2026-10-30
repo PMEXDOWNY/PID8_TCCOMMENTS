@@ -53,7 +53,9 @@ Detalle, tablas y figuras en `Proyecto/Modelado/RESULTADOS.md` (y su versión co
 
 Limitaciones principales: una sola partición, una sola semilla en BERT sobre Jigsaw y en la transferencia, sin ajuste de hiperparámetros ni de umbral, y las pruebas de ortografía alterada son sintéticas (sección 9 de `RESULTADOS.md`).
 
-## Cómo reproducir
+## Cómo reproducir (opcional)
+
+**No hace falta correr nada para ver los resultados ni para usar la demo:** las cifras, tablas y figuras ya están guardadas en `Proyecto/Modelado/Resultados/` y los modelos de la demo **ya vienen entrenados** en el repo (con Git LFS). Los pasos de abajo son solo para quien quiera repetir los experimentos.
 
 Desde la raíz del repo, con `pip install -r requirements.txt`:
 
@@ -76,9 +78,10 @@ Los experimentos con BERT usan GPU si hay; sin ella tardan mucho más. Los scrip
 ## Demo interactiva
 
 ```
-python Proyecto/Modelado/10_entrenar_demo.py    # solo si no tienes los modelos: ya vienen en el repo con Git LFS (630 MB)
 python Proyecto/Modelado/11_demo.py             # abre http://127.0.0.1:8765
 ```
+
+Los modelos **ya están entrenados** (`Proyecto/Modelado/Demo/modelos/`, con Git LFS, unos 630 MB): no hay que entrenar nada. Si alguien quiere reentrenarlos, es opcional: `python Proyecto/Modelado/10_entrenar_demo.py` (~12 min con GPU).
 
 Escribes un mensaje (en inglés) y ves el veredicto del filtro de palabras, la regresión logística, el SVM y los BERT. Una casilla permite normalizar la ortografía (deshacer `1diot`, `f u c k`) antes de los modelos y ver la diferencia. Más detalles y advertencias en `Proyecto/Modelado/Demo/LEEME.md`, que incluye **7 capturas reales de la demo funcionando** (`Proyecto/Modelado/Demo/capturas/`): un mensaje normal, grosería casual, tóxico explícito, tóxico implícito, un insulto disfrazado sin y con normalización, y el caso límite.
 

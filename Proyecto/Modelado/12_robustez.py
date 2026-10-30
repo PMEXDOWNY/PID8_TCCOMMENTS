@@ -1,11 +1,13 @@
 """Robustez a la ortografia alterada en CONDA: cuanto detecta cada modelo cuando se disfrazan las groserias, y que tanto ayuda arreglarlo.
 
 Uso (desde la raiz del repo):
-    python Proyecto/Modelado/12_robustez.py                 # todo (~25 min con GPU; el BERT con aumento se entrena una vez)
+    python Proyecto/Modelado/12_robustez.py                 # todo (~3 min: el BERT con aumento YA VIENE ENTRENADO y se reutiliza)
     python Proyecto/Modelado/12_robustez.py --sin-bert      # filtro y modelos lineales (~3 min)
     python Proyecto/Modelado/12_robustez.py --solo-tablas   # regenera tablas y figura desde el CSV
 
-Necesita Demo/modelos/bert_binario.pt (lo crea 10_entrenar_demo.py): es el BERT binario SIN aumento, entrenado igual que el de 03_bert.py.
+Usa Demo/modelos/bert_binario.pt (el BERT binario SIN aumento, entrenado igual que el de 03_bert.py) y Demo/modelos/bert_robusto.pt (el BERT
+con aumento). Los dos YA VIENEN ENTRENADOS en el repo (Git LFS). Solo si faltan: bert_binario.pt lo crea 10_entrenar_demo.py y
+bert_robusto.pt lo entrena este mismo script (~7 min extra con GPU).
 
 Que se mide (todo sobre el test de CONDA, el mismo split por partida de los demas scripts):
   - "test limpio": F1 de la clase toxica y las dos tasas, con el texto sin tocar. Sirve para ver que arreglar la ortografia no empeora lo normal.

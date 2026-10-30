@@ -1,4 +1,7 @@
-"""Entrena y GUARDA los modelos de CONDA que usa la demo (11_demo.py).
+"""(OPCIONAL) Entrena y GUARDA los modelos de CONDA que usa la demo (11_demo.py).
+
+Los modelos YA VIENEN ENTRENADOS en el repo (Demo/modelos/, con Git LFS): para usar la demo no hace falta correr este script.
+Sirve solo para quien quiera reentrenarlos desde cero.
 
 Uso (desde la raiz del repo):
     python Proyecto/Modelado/10_entrenar_demo.py

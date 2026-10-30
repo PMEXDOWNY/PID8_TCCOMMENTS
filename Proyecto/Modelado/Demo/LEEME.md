@@ -9,16 +9,23 @@ Una página local (solo en tu computadora, `http://127.0.0.1:8765`) con un cuadr
 | SVM lineal | Margen de decisión (mayor que 0 = tóxico) y lo que más pesó. |
 | BERT (tóxico / no tóxico) | Probabilidad de tóxico. |
 | BERT de 4 clases | Probabilidad de O, E, A e I (tóxico = E o I). |
-| BERT con aumento de datos | Igual que el BERT binario, pero entrenado también con mensajes de ortografía alterada (aparece si existe `modelos/bert_robusto.pt`, que crea `12_robustez.py`). |
+| BERT con aumento de datos | Igual que el BERT binario, pero entrenado también con mensajes de ortografía alterada (ya viene entrenado en `modelos/bert_robusto.pt`). |
 
 ## Cómo usarla
 
 Desde la raíz del repo:
 
 ```
-python Proyecto/Modelado/10_entrenar_demo.py    # solo si no tienes los modelos (ver abajo): ~12 min con GPU, los guarda en Demo/modelos/
-python Proyecto/Modelado/12_robustez.py         # opcional: entrena el BERT con aumento y mide la robustez (~25 min con GPU)
 python Proyecto/Modelado/11_demo.py             # arranca la demo; abre el navegador solo
+```
+
+**Los modelos ya vienen entrenados** en `Demo/modelos/` (ver más abajo cómo se bajan con Git LFS): no hay que entrenar nada para usar la demo.
+
+Solo si alguien quiere reentrenarlos o repetir la medición (opcional):
+
+```
+python Proyecto/Modelado/10_entrenar_demo.py    # reentrena los modelos de la demo (~12 min con GPU)
+python Proyecto/Modelado/12_robustez.py         # repite la medición de robustez (~3 min; si falta bert_robusto.pt lo reentrena, +7 min)
 ```
 
 - `11_demo.py --sin-bert` arranca en segundos con el filtro, la logística y el SVM, sin cargar BERT.

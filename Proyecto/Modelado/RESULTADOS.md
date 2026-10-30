@@ -2,7 +2,7 @@
 
 **Estado:** entregas del 28 de octubre y del 4 de noviembre completas: filtro de palabras, regresión logística, SVM lineal, XGBoost, BiGRU y BERT por fuente; las 4 clases de CONDA; el experimento de contexto; y el de transferencia entre fuentes. No se probó RoBERTa (el README pide "BERT o RoBERTa"; se usó BERT).
 
-Todo se reproduce desde la raíz del repo con los scripts de `Proyecto/Modelado/` (ver la sección 10). Las cifras salen de los CSV de `Resultados/`, y `Resultados/Reporte_de_resultados.pdf` es este mismo documento con sus figuras.
+Todo se reproduce desde la raíz del repo con los scripts de `Proyecto/Modelado/` (ver la sección 10), pero **correrlos es opcional**: las cifras y figuras ya están guardadas en `Resultados/` y los modelos de la demo ya vienen entrenados en el repo (con Git LFS). Las cifras salen de los CSV de `Resultados/`, y `Resultados/Reporte_de_resultados.pdf` es este mismo documento con sus figuras.
 
 ## 0. Respuesta corta a las tres preguntas del artículo
 
@@ -276,7 +276,7 @@ Todos los scripts corren desde la raíz del repo. Los experimentos con BERT nece
 | `07_xgboost.py` | XGBoost por fuente. Salida: `Resultados/resultados_xgboost.csv` y `.md`. |
 | `08_figuras.py` | Figuras y tabla consolidada: `Resultados/fig_modelos.png`, `fig_4clases.png`, `fig_contexto.png`, `fig_transferencia.png` y `resultados_todos.md`. |
 | `09_reporte_pdf.py` | Genera `Resultados/Reporte_de_resultados.pdf` a partir de este archivo. |
-| `12_robustez.py` | Experimento de robustez a la ortografía alterada (sección 8): 12 métodos contra 10 conjuntos de prueba. Entrena un BERT con aumento (`Demo/modelos/bert_robusto.pt`, ~7 minutos con GPU). Salida: `Resultados/resultados_robustez.csv` y `.md`, `fig_robustez.png`. |
+| `12_robustez.py` | Experimento de robustez a la ortografía alterada (sección 8): 12 métodos contra 10 conjuntos de prueba. El BERT con aumento (`Demo/modelos/bert_robusto.pt`) ya viene entrenado en el repo; el script solo lo reentrena si falta (~7 minutos con GPU). Salida: `Resultados/resultados_robustez.csv` y `.md`, `fig_robustez.png`. |
 | `normalizar.py` | Normalizador de texto contra disfraces (lo usan el experimento y la demo). |
 | `perturbar.py` | Generador de ortografía alterada: sirve para las pruebas y para aumentar los datos de entrenamiento. |
 | `10_entrenar_demo.py` | Entrena y guarda en `Demo/modelos/` los modelos de CONDA que usa la demo (los mismos que se evaluaron; ~12 minutos con GPU). Los `.pt` (~630 MB en total) están en el repo con Git LFS, así que normalmente no hace falta correrlo (ver `Demo/LEEME.md`). |
