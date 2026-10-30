@@ -67,6 +67,52 @@ def split_dev(train: pd.DataFrame, fuente: str):
     return i_tr, i_dev
 
 
+def crear_vectorizadores(max_palabras=200_000, max_chars=150_000):
+    """Los dos TF-IDF del proyecto: palabras (1-2gram) y caracteres (2-4gram, dentro de palabras), sin ajustar."""
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    palabras = TfidfVectorizer(ngram_range=(1, 2), min_df=2, max_features=max_palabras, sublinear_tf=True, dtype=np.float32)
+    chars = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4), min_df=3, max_features=max_chars,
+                            sublinear_tf=True, dtype=np.float32)
+    return palabras, chars
+
+
+def vectorizar_varios(train, tests, max_palabras=200_000, max_chars=150_000):
+    """TF-IDF de palabras + caracteres. Se ajusta solo con train y se aplica a cada DataFrame de `tests`."""
+    from scipy.sparse import hstack
+    palabras, chars = crear_vectorizadores(max_palabras, max_chars)
+    X_tr = hstack([palabras.fit_transform(train["text"]), chars.fit_transform(train["text"])]).tocsr()
+    return X_tr, [hstack([palabras.transform(t["text"]), chars.transform(t["text"])]).tocsr() for t in tests]
+
+
+def vectorizar(train, test, **max_rasgos):
+    X_tr, (X_te,) = vectorizar_varios(train, [test], **max_rasgos)
+    return X_tr, X_te
+
+
+CLASES_CONDA = ["O", "E", "A", "I"]  # orden de las etiquetas 0..3 en los experimentos de 4 clases
+
+
+def contextos_conda(k: int) -> pd.Series:
+    """uid -> los k mensajes anteriores de la misma conversacion (conversationId), del mas viejo al mas nuevo, unidos con ' | '.
+
+    Se arma con los tres archivos originales: el de test no trae etiqueta pero si el texto, y una conversacion puede
+    repartirse entre archivos. El orden es (chatTime, Id); dentro de cada conversacion el Id crece con chatTime.
+    Como el split train/test se hace por partida, el contexto de un mensaje nunca sale de la otra mitad.
+    """
+    d = DATOS / "CONDA" / "datos"
+    a = pd.concat([pd.read_csv(d / f"CONDA_{s}.csv", usecols=["Id", "conversationId", "chatTime", "utterance"])
+                   for s in ("train", "valid", "test")], ignore_index=True)
+    a["utterance"] = a["utterance"].fillna("").astype(str).str.strip()
+    a = a.sort_values(["conversationId", "chatTime", "Id"]).reset_index(drop=True)
+    textos, conv = a["utterance"].tolist(), a["conversationId"].tolist()
+    ctx, inicio = [], 0
+    for i in range(len(a)):
+        if i > 0 and conv[i] != conv[i - 1]:
+            inicio = i
+        ctx.append(" | ".join(t for t in textos[max(inicio, i - k):i] if t))
+    return pd.Series(ctx, index="conda_" + a["Id"].astype(str))
+
+
 def metricas(y, pred, score) -> dict:
     """Metricas de la clase toxica. Nunca se reporta exactitud sola: con 74% de clase O cualquier cosa da alto."""
     return {

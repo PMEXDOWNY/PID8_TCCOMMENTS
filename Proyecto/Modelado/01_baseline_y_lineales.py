@@ -22,26 +22,14 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from scipy.sparse import hstack
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score
 from sklearn.svm import LinearSVC
 
-from comun import SALIDA, SEED, cargar_datos, metricas, split_dev, split_por_fuente, tasas_grupos
+from comun import SALIDA, SEED, cargar_datos, metricas, split_dev, split_por_fuente, tasas_grupos, vectorizar
 
 C_GRID = [0.3, 1.0, 3.0]
 NOMBRES = {"filtro_palabras": "Filtro de palabras (lexicon T)", "logistica": "Regresion logistica", "svm": "SVM lineal"}
-
-
-def vectorizar(train, test):
-    """TF-IDF de palabras (1-2gram) + caracteres (2-4gram, dentro de palabras). Se ajusta solo con train."""
-    palabras = TfidfVectorizer(ngram_range=(1, 2), min_df=2, max_features=200_000, sublinear_tf=True, dtype=np.float32)
-    chars = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4), min_df=3, max_features=150_000,
-                            sublinear_tf=True, dtype=np.float32)
-    X_tr = hstack([palabras.fit_transform(train["text"]), chars.fit_transform(train["text"])]).tocsr()
-    X_te = hstack([palabras.transform(test["text"]), chars.transform(test["text"])]).tocsr()
-    return X_tr, X_te
 
 
 def crear(modelo, C):

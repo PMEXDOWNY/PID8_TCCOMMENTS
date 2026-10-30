@@ -1,0 +1,301 @@
+metodo,medida,familia,valor,n
+Filtro de palabras,f1_toxico,-,0.6499421072944809,7569
+Filtro de palabras,precision_toxico,-,0.7988614800759013,7569
+Filtro de palabras,recall_toxico,-,0.5478204294079375,7569
+Filtro de palabras,groseria_casual_bloqueada,-,1.0,7569
+Filtro de palabras,toxicidad_implicita_detectada,-,0.0,7569
+Filtro de palabras,deteccion_explicitos,limpio,1.0,842
+Filtro de palabras,falsos_positivos_benignos,limpio,0.036,2000
+Filtro de palabras,deteccion_explicitos,leet,0.19101123595505617,712
+Filtro de palabras,falsos_positivos_benignos,leet,0.03264331210191083,1256
+Filtro de palabras,deteccion_explicitos,espacios,0.05959475566150179,839
+Filtro de palabras,falsos_positivos_benignos,espacios,0.03088803088803089,1295
+Filtro de palabras,deteccion_explicitos,repeticion,0.09296781883194279,839
+Filtro de palabras,falsos_positivos_benignos,repeticion,0.03208556149732621,1309
+Filtro de palabras,deteccion_explicitos,tecla,0.28350515463917525,776
+Filtro de palabras,falsos_positivos_benignos,tecla,0.03108003108003108,1287
+Filtro de palabras,deteccion_explicitos,sin_vocales,0.19850187265917604,801
+Filtro de palabras,falsos_positivos_benignos,sin_vocales,0.03459372485921158,1243
+Filtro de palabras,deteccion_explicitos,fonetica,0.26609442060085836,466
+Filtro de palabras,falsos_positivos_benignos,fonetica,0.028708133971291867,418
+Filtro de palabras,deteccion_explicitos,homoglifos,0.38509316770186336,805
+Filtro de palabras,falsos_positivos_benignos,homoglifos,0.03540519276160504,1271
+Filtro de palabras,deteccion_explicitos,mixto,0.19427890345649582,839
+Filtro de palabras,falsos_positivos_benignos,mixto,0.03144171779141104,1304
+Filtro de palabras,deteccion_explicitos,creativa,0.2746566791510612,801
+Filtro de palabras,falsos_positivos_benignos,creativa,0.03666921313980138,1309
+Filtro + normalización,f1_toxico,-,0.6552641581147852,7569
+Filtro + normalización,precision_toxico,-,0.7879341864716636,7569
+Filtro + normalización,recall_toxico,-,0.560832791151594,7569
+Filtro + normalización,groseria_casual_bloqueada,-,1.0,7569
+Filtro + normalización,toxicidad_implicita_detectada,-,0.02877697841726619,7569
+Filtro + normalización,deteccion_explicitos,limpio,1.0,842
+Filtro + normalización,falsos_positivos_benignos,limpio,0.0375,2000
+Filtro + normalización,deteccion_explicitos,leet,0.9817415730337079,712
+Filtro + normalización,falsos_positivos_benignos,leet,0.04777070063694268,1256
+Filtro + normalización,deteccion_explicitos,espacios,0.9928486293206198,839
+Filtro + normalización,falsos_positivos_benignos,espacios,0.04864864864864865,1295
+Filtro + normalización,deteccion_explicitos,repeticion,0.9427890345649583,839
+Filtro + normalización,falsos_positivos_benignos,repeticion,0.05500381970970206,1309
+Filtro + normalización,deteccion_explicitos,tecla,0.7306701030927835,776
+Filtro + normalización,falsos_positivos_benignos,tecla,0.04972804972804973,1287
+Filtro + normalización,deteccion_explicitos,sin_vocales,0.533083645443196,801
+Filtro + normalización,falsos_positivos_benignos,sin_vocales,0.0667739340305712,1243
+Filtro + normalización,deteccion_explicitos,fonetica,0.9892703862660944,466
+Filtro + normalización,falsos_positivos_benignos,fonetica,0.0430622009569378,418
+Filtro + normalización,deteccion_explicitos,homoglifos,1.0,805
+Filtro + normalización,falsos_positivos_benignos,homoglifos,0.04878048780487805,1271
+Filtro + normalización,deteccion_explicitos,mixto,0.8688915375446961,839
+Filtro + normalización,falsos_positivos_benignos,mixto,0.05368098159509203,1304
+Filtro + normalización,deteccion_explicitos,creativa,0.6129837702871411,801
+Filtro + normalización,falsos_positivos_benignos,creativa,0.05118411000763942,1309
+Logística,f1_toxico,-,0.8482952768220207,7569
+Logística,precision_toxico,-,0.8168674698795181,7569
+Logística,recall_toxico,-,0.8822381262199089,7569
+Logística,groseria_casual_bloqueada,-,0.37264150943396224,7569
+Logística,toxicidad_implicita_detectada,-,0.7841726618705036,7569
+Logística,deteccion_explicitos,limpio,0.9631828978622328,842
+Logística,falsos_positivos_benignos,limpio,0.0495,2000
+Logística,deteccion_explicitos,leet,0.5379213483146067,712
+Logística,falsos_positivos_benignos,leet,0.0589171974522293,1256
+Logística,deteccion_explicitos,espacios,0.2562574493444577,839
+Logística,falsos_positivos_benignos,espacios,0.047876447876447875,1295
+Logística,deteccion_explicitos,repeticion,0.8760429082240763,839
+Logística,falsos_positivos_benignos,repeticion,0.0718105423987777,1309
+Logística,deteccion_explicitos,tecla,0.6778350515463918,776
+Logística,falsos_positivos_benignos,tecla,0.055944055944055944,1287
+Logística,deteccion_explicitos,sin_vocales,0.5580524344569289,801
+Logística,falsos_positivos_benignos,sin_vocales,0.057924376508447305,1243
+Logística,deteccion_explicitos,fonetica,0.7639484978540773,466
+Logística,falsos_positivos_benignos,fonetica,0.06937799043062201,418
+Logística,deteccion_explicitos,homoglifos,0.5490683229813664,805
+Logística,falsos_positivos_benignos,homoglifos,0.05428796223446106,1271
+Logística,deteccion_explicitos,mixto,0.567342073897497,839
+Logística,falsos_positivos_benignos,mixto,0.06058282208588957,1304
+Logística,deteccion_explicitos,creativa,0.6242197253433208,801
+Logística,falsos_positivos_benignos,creativa,0.061115355233002294,1309
+Logística + normalización,f1_toxico,-,0.8492808005003127,7569
+Logística + normalización,precision_toxico,-,0.8175797712221553,7569
+Logística + normalización,recall_toxico,-,0.8835393623942746,7569
+Logística + normalización,groseria_casual_bloqueada,-,0.37264150943396224,7569
+Logística + normalización,toxicidad_implicita_detectada,-,0.7942446043165468,7569
+Logística + normalización,deteccion_explicitos,limpio,0.9572446555819477,842
+Logística + normalización,falsos_positivos_benignos,limpio,0.049,2000
+Logística + normalización,deteccion_explicitos,leet,0.9396067415730337,712
+Logística + normalización,falsos_positivos_benignos,leet,0.07006369426751592,1256
+Logística + normalización,deteccion_explicitos,espacios,0.9535160905840286,839
+Logística + normalización,falsos_positivos_benignos,espacios,0.06872586872586872,1295
+Logística + normalización,deteccion_explicitos,repeticion,0.9380214541120382,839
+Logística + normalización,falsos_positivos_benignos,repeticion,0.07257448433919023,1309
+Logística + normalización,deteccion_explicitos,tecla,0.8440721649484536,776
+Logística + normalización,falsos_positivos_benignos,tecla,0.05827505827505827,1287
+Logística + normalización,deteccion_explicitos,sin_vocales,0.7428214731585518,801
+Logística + normalización,falsos_positivos_benignos,sin_vocales,0.06918744971842317,1243
+Logística + normalización,deteccion_explicitos,fonetica,0.9484978540772532,466
+Logística + normalización,falsos_positivos_benignos,fonetica,0.08133971291866028,418
+Logística + normalización,deteccion_explicitos,homoglifos,0.9664596273291925,805
+Logística + normalización,falsos_positivos_benignos,homoglifos,0.07002360346184107,1271
+Logística + normalización,deteccion_explicitos,mixto,0.8820023837902264,839
+Logística + normalización,falsos_positivos_benignos,mixto,0.0651840490797546,1304
+Logística + normalización,deteccion_explicitos,creativa,0.7465667915106118,801
+Logística + normalización,falsos_positivos_benignos,creativa,0.061879297173414824,1309
+Logística + aumento,f1_toxico,-,0.8460332392599561,7569
+Logística + aumento,precision_toxico,-,0.8165859564164649,7569
+Logística + aumento,recall_toxico,-,0.8776837996096292,7569
+Logística + aumento,groseria_casual_bloqueada,-,0.3490566037735849,7569
+Logística + aumento,toxicidad_implicita_detectada,-,0.7841726618705036,7569
+Logística + aumento,deteccion_explicitos,limpio,0.9548693586698337,842
+Logística + aumento,falsos_positivos_benignos,limpio,0.0495,2000
+Logística + aumento,deteccion_explicitos,leet,0.8033707865168539,712
+Logística + aumento,falsos_positivos_benignos,leet,0.054140127388535034,1256
+Logística + aumento,deteccion_explicitos,espacios,0.6615017878426699,839
+Logística + aumento,falsos_positivos_benignos,espacios,0.08185328185328185,1295
+Logística + aumento,deteccion_explicitos,repeticion,0.9117997616209773,839
+Logística + aumento,falsos_positivos_benignos,repeticion,0.06417112299465241,1309
+Logística + aumento,deteccion_explicitos,tecla,0.7925257731958762,776
+Logística + aumento,falsos_positivos_benignos,tecla,0.06526806526806526,1287
+Logística + aumento,deteccion_explicitos,sin_vocales,0.8664169787765293,801
+Logística + aumento,falsos_positivos_benignos,sin_vocales,0.058728881737731296,1243
+Logística + aumento,deteccion_explicitos,fonetica,0.8969957081545065,466
+Logística + aumento,falsos_positivos_benignos,fonetica,0.06220095693779904,418
+Logística + aumento,deteccion_explicitos,homoglifos,0.8782608695652174,805
+Logística + aumento,falsos_positivos_benignos,homoglifos,0.05271439811172305,1271
+Logística + aumento,deteccion_explicitos,mixto,0.8224076281287247,839
+Logística + aumento,falsos_positivos_benignos,mixto,0.07208588957055215,1304
+Logística + aumento,deteccion_explicitos,creativa,0.7066167290886392,801
+Logística + aumento,falsos_positivos_benignos,creativa,0.0718105423987777,1309
+SVM,f1_toxico,-,0.8478396994364433,7569
+SVM,precision_toxico,-,0.8171394085697042,7569
+SVM,recall_toxico,-,0.8809368900455433,7569
+SVM,groseria_casual_bloqueada,-,0.35377358490566035,7569
+SVM,toxicidad_implicita_detectada,-,0.7870503597122303,7569
+SVM,deteccion_explicitos,limpio,0.9584323040380047,842
+SVM,falsos_positivos_benignos,limpio,0.052,2000
+SVM,deteccion_explicitos,leet,0.5098314606741573,712
+SVM,falsos_positivos_benignos,leet,0.06449044585987261,1256
+SVM,deteccion_explicitos,espacios,0.2359952324195471,839
+SVM,falsos_positivos_benignos,espacios,0.047876447876447875,1295
+SVM,deteccion_explicitos,repeticion,0.8772348033373063,839
+SVM,falsos_positivos_benignos,repeticion,0.06799083269671505,1309
+SVM,deteccion_explicitos,tecla,0.6713917525773195,776
+SVM,falsos_positivos_benignos,tecla,0.05283605283605284,1287
+SVM,deteccion_explicitos,sin_vocales,0.5555555555555556,801
+SVM,falsos_positivos_benignos,sin_vocales,0.05309734513274336,1243
+SVM,deteccion_explicitos,fonetica,0.7553648068669528,466
+SVM,falsos_positivos_benignos,fonetica,0.06698564593301436,418
+SVM,deteccion_explicitos,homoglifos,0.5204968944099378,805
+SVM,falsos_positivos_benignos,homoglifos,0.05428796223446106,1271
+SVM,deteccion_explicitos,mixto,0.5589988081048868,839
+SVM,falsos_positivos_benignos,mixto,0.0598159509202454,1304
+SVM,deteccion_explicitos,creativa,0.602996254681648,801
+SVM,falsos_positivos_benignos,creativa,0.061115355233002294,1309
+SVM + normalización,f1_toxico,-,0.85,7569
+SVM + normalización,precision_toxico,-,0.8177991581479255,7569
+SVM + normalización,recall_toxico,-,0.8848405985686402,7569
+SVM + normalización,groseria_casual_bloqueada,-,0.3584905660377358,7569
+SVM + normalización,toxicidad_implicita_detectada,-,0.7956834532374101,7569
+SVM + normalización,deteccion_explicitos,limpio,0.9584323040380047,842
+SVM + normalización,falsos_positivos_benignos,limpio,0.052,2000
+SVM + normalización,deteccion_explicitos,leet,0.9382022471910112,712
+SVM + normalización,falsos_positivos_benignos,leet,0.0732484076433121,1256
+SVM + normalización,deteccion_explicitos,espacios,0.9535160905840286,839
+SVM + normalización,falsos_positivos_benignos,espacios,0.07258687258687259,1295
+SVM + normalización,deteccion_explicitos,repeticion,0.9380214541120382,839
+SVM + normalización,falsos_positivos_benignos,repeticion,0.07257448433919023,1309
+SVM + normalización,deteccion_explicitos,tecla,0.836340206185567,776
+SVM + normalización,falsos_positivos_benignos,tecla,0.05672105672105672,1287
+SVM + normalización,deteccion_explicitos,sin_vocales,0.7490636704119851,801
+SVM + normalización,falsos_positivos_benignos,sin_vocales,0.06918744971842317,1243
+SVM + normalización,deteccion_explicitos,fonetica,0.9484978540772532,466
+SVM + normalización,falsos_positivos_benignos,fonetica,0.08851674641148326,418
+SVM + normalización,deteccion_explicitos,homoglifos,0.968944099378882,805
+SVM + normalización,falsos_positivos_benignos,homoglifos,0.07474429583005507,1271
+SVM + normalización,deteccion_explicitos,mixto,0.8808104886769964,839
+SVM + normalización,falsos_positivos_benignos,mixto,0.07208588957055215,1304
+SVM + normalización,deteccion_explicitos,creativa,0.7365792759051186,801
+SVM + normalización,falsos_positivos_benignos,creativa,0.06264323911382735,1309
+SVM + aumento,f1_toxico,-,0.8452830188679246,7569
+SVM + aumento,precision_toxico,-,0.8180158247108947,7569
+SVM + aumento,recall_toxico,-,0.874430709173715,7569
+SVM + aumento,groseria_casual_bloqueada,-,0.33962264150943394,7569
+SVM + aumento,toxicidad_implicita_detectada,-,0.7784172661870503,7569
+SVM + aumento,deteccion_explicitos,limpio,0.9536817102137767,842
+SVM + aumento,falsos_positivos_benignos,limpio,0.0515,2000
+SVM + aumento,deteccion_explicitos,leet,0.8103932584269663,712
+SVM + aumento,falsos_positivos_benignos,leet,0.05493630573248408,1256
+SVM + aumento,deteccion_explicitos,espacios,0.6901072705601907,839
+SVM + aumento,falsos_positivos_benignos,espacios,0.07644787644787644,1295
+SVM + aumento,deteccion_explicitos,repeticion,0.9117997616209773,839
+SVM + aumento,falsos_positivos_benignos,repeticion,0.059587471352177235,1309
+SVM + aumento,deteccion_explicitos,tecla,0.8028350515463918,776
+SVM + aumento,falsos_positivos_benignos,tecla,0.06293706293706294,1287
+SVM + aumento,deteccion_explicitos,sin_vocales,0.8751560549313359,801
+SVM + aumento,falsos_positivos_benignos,sin_vocales,0.06033789219629927,1243
+SVM + aumento,deteccion_explicitos,fonetica,0.8969957081545065,466
+SVM + aumento,falsos_positivos_benignos,fonetica,0.06220095693779904,418
+SVM + aumento,deteccion_explicitos,homoglifos,0.8869565217391304,805
+SVM + aumento,falsos_positivos_benignos,homoglifos,0.05271439811172305,1271
+SVM + aumento,deteccion_explicitos,mixto,0.8283671036948749,839
+SVM + aumento,falsos_positivos_benignos,mixto,0.07822085889570553,1304
+SVM + aumento,deteccion_explicitos,creativa,0.6941323345817728,801
+SVM + aumento,falsos_positivos_benignos,creativa,0.061115355233002294,1309
+BERT,f1_toxico,-,0.8600902643455834,7569
+BERT,precision_toxico,-,0.8523961661341853,7569
+BERT,recall_toxico,-,0.8679245283018868,7569
+BERT,groseria_casual_bloqueada,-,0.4386792452830189,7569
+BERT,toxicidad_implicita_detectada,-,0.7453237410071942,7569
+BERT,deteccion_explicitos,limpio,0.9691211401425178,842
+BERT,falsos_positivos_benignos,limpio,0.043,2000
+BERT,deteccion_explicitos,leet,0.4044943820224719,712
+BERT,falsos_positivos_benignos,leet,0.03821656050955414,1256
+BERT,deteccion_explicitos,espacios,0.1871275327771156,839
+BERT,falsos_positivos_benignos,espacios,0.040926640926640924,1295
+BERT,deteccion_explicitos,repeticion,0.7783075089392133,839
+BERT,falsos_positivos_benignos,repeticion,0.053475935828877004,1309
+BERT,deteccion_explicitos,tecla,0.595360824742268,776
+BERT,falsos_positivos_benignos,tecla,0.045066045066045064,1287
+BERT,deteccion_explicitos,sin_vocales,0.47191011235955055,801
+BERT,falsos_positivos_benignos,sin_vocales,0.04424778761061947,1243
+BERT,deteccion_explicitos,fonetica,0.6974248927038627,466
+BERT,falsos_positivos_benignos,fonetica,0.05741626794258373,418
+BERT,deteccion_explicitos,homoglifos,0.5937888198757764,805
+BERT,falsos_positivos_benignos,homoglifos,0.043273013375295044,1271
+BERT,deteccion_explicitos,mixto,0.5244338498212158,839
+BERT,falsos_positivos_benignos,mixto,0.03834355828220859,1304
+BERT,deteccion_explicitos,creativa,0.39076154806491886,801
+BERT,falsos_positivos_benignos,creativa,0.03284950343773873,1309
+BERT + normalización,f1_toxico,-,0.859254498714653,7569
+BERT + normalización,precision_toxico,-,0.8488888888888889,7569
+BERT + normalización,recall_toxico,-,0.8698763825634352,7569
+BERT + normalización,groseria_casual_bloqueada,-,0.4339622641509434,7569
+BERT + normalización,toxicidad_implicita_detectada,-,0.7496402877697842,7569
+BERT + normalización,deteccion_explicitos,limpio,0.9691211401425178,842
+BERT + normalización,falsos_positivos_benignos,limpio,0.0435,2000
+BERT + normalización,deteccion_explicitos,leet,0.9466292134831461,712
+BERT + normalización,falsos_positivos_benignos,leet,0.06369426751592357,1256
+BERT + normalización,deteccion_explicitos,espacios,0.964243146603099,839
+BERT + normalización,falsos_positivos_benignos,espacios,0.06332046332046332,1295
+BERT + normalización,deteccion_explicitos,repeticion,0.9427890345649583,839
+BERT + normalización,falsos_positivos_benignos,repeticion,0.061115355233002294,1309
+BERT + normalización,deteccion_explicitos,tecla,0.8221649484536082,776
+BERT + normalización,falsos_positivos_benignos,tecla,0.04895104895104895,1287
+BERT + normalización,deteccion_explicitos,sin_vocales,0.6853932584269663,801
+BERT + normalización,falsos_positivos_benignos,sin_vocales,0.06596942880128721,1243
+BERT + normalización,deteccion_explicitos,fonetica,0.9570815450643777,466
+BERT + normalización,falsos_positivos_benignos,fonetica,0.07416267942583732,418
+BERT + normalización,deteccion_explicitos,homoglifos,0.9788819875776398,805
+BERT + normalización,falsos_positivos_benignos,homoglifos,0.06372934697088907,1271
+BERT + normalización,deteccion_explicitos,mixto,0.8831942789034565,839
+BERT + normalización,falsos_positivos_benignos,mixto,0.05598159509202454,1304
+BERT + normalización,deteccion_explicitos,creativa,0.6529338327091136,801
+BERT + normalización,falsos_positivos_benignos,creativa,0.0374331550802139,1309
+BERT con aumento,f1_toxico,-,0.8464704020259576,7569
+BERT con aumento,precision_toxico,-,0.8242909987669543,7569
+BERT con aumento,recall_toxico,-,0.8698763825634352,7569
+BERT con aumento,groseria_casual_bloqueada,-,0.41037735849056606,7569
+BERT con aumento,toxicidad_implicita_detectada,-,0.7467625899280576,7569
+BERT con aumento,deteccion_explicitos,limpio,0.9703087885985748,842
+BERT con aumento,falsos_positivos_benignos,limpio,0.0485,2000
+BERT con aumento,deteccion_explicitos,leet,0.6502808988764045,712
+BERT con aumento,falsos_positivos_benignos,leet,0.08519108280254777,1256
+BERT con aumento,deteccion_explicitos,espacios,0.5387365911799762,839
+BERT con aumento,falsos_positivos_benignos,espacios,0.11351351351351352,1295
+BERT con aumento,deteccion_explicitos,repeticion,0.8712753277711561,839
+BERT con aumento,falsos_positivos_benignos,repeticion,0.0718105423987777,1309
+BERT con aumento,deteccion_explicitos,tecla,0.7332474226804123,776
+BERT con aumento,falsos_positivos_benignos,tecla,0.061383061383061384,1287
+BERT con aumento,deteccion_explicitos,sin_vocales,0.846441947565543,801
+BERT con aumento,falsos_positivos_benignos,sin_vocales,0.06516492357200322,1243
+BERT con aumento,deteccion_explicitos,fonetica,0.8326180257510729,466
+BERT con aumento,falsos_positivos_benignos,fonetica,0.07655502392344497,418
+BERT con aumento,deteccion_explicitos,homoglifos,0.8881987577639752,805
+BERT con aumento,falsos_positivos_benignos,homoglifos,0.0999213217938631,1271
+BERT con aumento,deteccion_explicitos,mixto,0.768772348033373,839
+BERT con aumento,falsos_positivos_benignos,mixto,0.06671779141104295,1304
+BERT con aumento,deteccion_explicitos,creativa,0.5543071161048689,801
+BERT con aumento,falsos_positivos_benignos,creativa,0.05653170359052712,1309
+BERT con aumento + normalización,f1_toxico,-,0.8485804416403786,7569
+BERT con aumento + normalización,precision_toxico,-,0.8236374770361298,7569
+BERT con aumento + normalización,recall_toxico,-,0.8750813272608978,7569
+BERT con aumento + normalización,groseria_casual_bloqueada,-,0.41037735849056606,7569
+BERT con aumento + normalización,toxicidad_implicita_detectada,-,0.758273381294964,7569
+BERT con aumento + normalización,deteccion_explicitos,limpio,0.9703087885985748,842
+BERT con aumento + normalización,falsos_positivos_benignos,limpio,0.0485,2000
+BERT con aumento + normalización,deteccion_explicitos,leet,0.9620786516853933,712
+BERT con aumento + normalización,falsos_positivos_benignos,leet,0.0732484076433121,1256
+BERT con aumento + normalización,deteccion_explicitos,espacios,0.9690107270560191,839
+BERT con aumento + normalización,falsos_positivos_benignos,espacios,0.0749034749034749,1295
+BERT con aumento + normalización,deteccion_explicitos,repeticion,0.9618593563766389,839
+BERT con aumento + normalización,falsos_positivos_benignos,repeticion,0.07563025210084033,1309
+BERT con aumento + normalización,deteccion_explicitos,tecla,0.8930412371134021,776
+BERT con aumento + normalización,falsos_positivos_benignos,tecla,0.06526806526806526,1287
+BERT con aumento + normalización,deteccion_explicitos,sin_vocales,0.9563046192259675,801
+BERT con aumento + normalización,falsos_positivos_benignos,sin_vocales,0.08769106999195495,1243
+BERT con aumento + normalización,deteccion_explicitos,fonetica,0.9549356223175965,466
+BERT con aumento + normalización,falsos_positivos_benignos,fonetica,0.07894736842105263,418
+BERT con aumento + normalización,deteccion_explicitos,homoglifos,0.9788819875776398,805
+BERT con aumento + normalización,falsos_positivos_benignos,homoglifos,0.07238394964594808,1271
+BERT con aumento + normalización,deteccion_explicitos,mixto,0.9439809296781884,839
+BERT con aumento + normalización,falsos_positivos_benignos,mixto,0.07285276073619631,1304
+BERT con aumento + normalización,deteccion_explicitos,creativa,0.7503121098626716,801
+BERT con aumento + normalización,falsos_positivos_benignos,creativa,0.060351413292589765,1309
