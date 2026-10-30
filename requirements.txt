@@ -1,0 +1,16 @@
+# Versiones con las que se corrieron todos los experimentos (Python 3.12, Windows 11).
+# pip install -r requirements.txt
+pandas==3.0.6
+numpy==2.5.2
+scipy==1.18.1
+scikit-learn==1.9.1
+matplotlib==3.11.1
+xgboost==3.4.1
+joblib==1.6.0
+reportlab==5.0.0
+pillow==12.3.0
+transformers==5.22.0
+
+# PyTorch: se usó la versión 2.6.0 con CUDA 12.4 (GPU NVIDIA RTX 4050 de 6 GB). Instálala desde https://pytorch.org
+# según tu equipo; sin GPU también corre, pero BERT tarda mucho más.
+torch==2.6.0
