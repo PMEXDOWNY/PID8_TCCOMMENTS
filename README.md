@@ -35,3 +35,57 @@ Ahora toca el modelado. Aquí va punto por punto.
 28 Octubre -> FUENTE.md, paper de CONDA en matriz y Fuentes, filtro de palabras, logística y SVM por fuente con split por partida, tabla con las dos tasas (grosería casual bloqueada, toxicidad implícita detectada).
 
 04 Noviembre -> BiGRU o LSTM, BERT o RoBERTa al menos en CONDA, experimento de contexto y de transferencia entre fuentes, matriz completa con sus PDFs, todo en Proyecto/Modelado/RESULTADOS.md y documentado con gráficas en PDF o en el documento del artículo.
+
+## 6 de noviembre
+
+Revise lo del 28 de octubre y del 4 de noviembre y esta completo y muy bien hecho: FUENTE.md, paper de CONDA, matriz 60 de 60 con sus PDF, los 12 scripts, RESULTADOS.md con las tres preguntas respondidas y sus limitaciones, el PDF, la demo y el experimento de robustez. Reproduje los lineales y la tabla sale igual, y el split por partida no tiene fugas. Su BERT con 0.865 de F1 toxico y las 4 clases con I en 0.73 estan en el rango de la literatura (Weld 2021 reporta I 0.77 con otro split y etiquetas por palabra), y lo del contexto coincide con Pavlopoulos 2020.
+
+Probe si se podia subir mas: umbral elegido en dev, rasgos del lexicon por slot, ensamble de logistica y SVM, y dos BERT preentrenados en toxicidad (toxic-bert y hateBERT). Ninguno sale de la variacion entre semillas. El techo lo pone el dato (mensajes de dos a cinco palabras), no el modelo, asi que no hace falta RoBERTa. Lo que queda son dos corridas chicas que les dan tablas para el articulo, y los dos articulos.
+
+**Objetivo:** el mismo del 19 de octubre. Detectar toxicidad en el chat sin bloquear la groseria casual.
+
+**Variable objetivo:** is_toxic, sin cambios.
+
+**Variables de entrada:** las mismas. TF-IDF de palabras y caracteres para los lineales, texto para BERT.
+
+**Modelos:** los que ya tienen. No agreguen ninguno.
+
+**Corridas que faltan:**
+1. Curva de umbral. Con la logistica y el BERT de CONDA, mover el umbral de decision y graficar groseria casual bloqueada contra toxicidad implicita detectada. El umbral se elige en el dev, nunca en el test. Reporten en una tabla el umbral por defecto y el que deja la groseria casual bloqueada en 0.25 o menos. Esta curva es el corazon de su propuesta.
+2. Mensajes no vistos. Repetir la tabla principal de CONDA (seccion 2 de RESULTADOS.md) solo sobre los mensajes del test cuyo texto no aparece en train, que son 4,917 de 7,569. Es su limitacion 1 y se cierra con una tabla.
+
+**Validacion y metricas:** las mismas. Split por partida en CONDA, F1 macro, F1 toxico, AUC-PR y las dos tasas.
+
+**Lo que deben esperar:** en la curva, cada 10 puntos menos de groseria casual bloqueada cuestan cerca de 7 puntos de toxicidad implicita; con la logistica y casual en 0.25 o menos la implicita queda cerca de 0.71 y el F1 toxico no se mueve. En los mensajes no vistos la logistica baja de 0.848 a cerca de 0.825 de F1 toxico, la groseria casual bloqueada sube a cerca de 0.43 y la implicita baja a cerca de 0.71. Si les sale parecido, las conclusiones de RESULTADOS.md se mantienen y asi lo dicen en el articulo.
+
+**Pendientes del repo:** agreguen las dos tablas y la figura de la curva a RESULTADOS.md y regeneren el PDF con 09_reporte_pdf.py. Nada mas.
+
+**Articulo de investigacion:** `Plantilla_Articulo_Propuesta` tal cual, sin cambiar secciones. RESULTADOS.md ya es la seccion de resultados; el resto se arma asi:
+
+| Seccion | Que va |
+|---|---|
+| Titulo | Ejemplo: "Deteccion de toxicidad en chat de videojuegos sin bloquear la groseria casual: filtro de palabras, modelos lineales y BERT en CONDA y Jigsaw" |
+| Resumen | Dos fuentes, seis modelos, F1 toxico 0.865 en CONDA y 0.844 en Jigsaw, filtro de palabras 0.65 y 0.55, el contexto no ayuda, la transferencia entre fuentes cae a 0.28 y 0.59 |
+| I. Introduccion | Tres contribuciones: medir por separado la groseria casual y la toxicidad implicita; probar si el contexto de la partida ayuda; probar si conviene un modelo por fuente o uno conjunto |
+| II. Trabajos relacionados | Weld 2021, Yang 2023, Pavlopoulos 2020, Antypas 2023, van Aken 2018, Davidson 2017 y los demas de la matriz. Cierre: ninguno mide la groseria casual como tasa aparte |
+| III. Metodologia | Datos, DECISIONES.md, definicion de los dos grupos con el lexicon, rasgos, modelos, normalizador |
+| IV. Diseno experimental | Split por partida, dev, semillas, umbral elegido en dev, hardware |
+| V. Resultados | Tablas de RESULTADOS.md mas la curva de umbral y la tabla de mensajes no vistos |
+| VI. Discusion | Comparacion con Weld en las 4 clases, por que el contexto no ayuda aqui, la caida de la transferencia, el techo del dato y las limitaciones de la seccion 9 |
+| VII. Conclusiones | Con los numeros. Futuro: mensajes de otros juegos, personas reales burlando el filtro |
+| Referencias | IEEE; CONDA y Jigsaw con URL y fecha de descarga de FUENTE.md |
+
+**Articulo de revision:** `Plantilla_Articulo_Revision` tal cual. La matriz si cambia: agreguen estas columnas para las 60 filas: ano; tipo de fuente; dominio (videojuegos, redes sociales, comentarios, otro); idioma; conjunto de datos; familia de modelo (lexico, lineal, arboles o boosting, red recurrente, transformer, LLM); usa contexto (si o no); metrica principal y valor. Registren el metodo de busqueda.
+
+| Seccion | Que va |
+|---|---|
+| I. Introduccion | PR1: que modelos se usan para detectar toxicidad en texto entre 2017 y 2026 y que resultado reportan. PR2: en que dominios y conjuntos de datos se evaluan. PR3: como tratan la groseria casual, el contexto y la ortografia alterada |
+| II. Metodo | Bases consultadas, cadena de busqueda, fecha, criterios de inclusion y exclusion, numeros que cuadren con las 60 filas |
+| III. Panorama | Figura por ano y familia de modelo; tabla por dominio y conjunto de datos. Sale de las columnas nuevas |
+| IV. Problematicas | Ofensivo contra toxico, desbalance, mensajes cortos de chat, cambio de dominio, disfraces de ortografia |
+| V. Soluciones | Por familia: lexicos, lineales con TF-IDF, boosting, recurrentes, transformers, LLM |
+| VI. Analisis | Que se repite (BERT gana por poco, los lexicos fallan en lo implicito) y cuando dos trabajos no son comparables |
+| VII. Vacios | Pocos miden la groseria casual aparte; casi ninguno evalua en chat de videojuegos; el contexto da resultados contrarios. De aqui sale el articulo de investigacion |
+| VIII. Conclusiones | Responder PR1 a PR3 y limitaciones |
+
+20 Noviembre -> todo junto: corridas 1 y 2 en RESULTADOS.md y el PDF, matriz con las columnas nuevas y los dos articulos completos en sus plantillas. Las corridas son de un dia; dediquen el tiempo a los articulos.
