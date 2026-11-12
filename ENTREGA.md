@@ -30,7 +30,7 @@ Proyecto/
     Exploratorio/                   análisis exploratorio con figuras
   Modelado/
     RESULTADOS.md                   resultados completos, interpretación y limitaciones
-    01_ ... 09_*.py, 12_robustez.py experimentos, figuras y PDF (ver abajo)
+    01_ ... 09_*.py, 12_robustez.py, 13_umbral.py, 14_no_vistos.py   experimentos, figuras y PDF (ver abajo)
     10_entrenar_demo.py, 11_demo.py demo interactiva
     comun.py, bert_util.py          funciones compartidas
     normalizar.py, perturbar.py     normalizador de ortografía alterada y generador de pruebas
@@ -50,8 +50,10 @@ Detalle, tablas y figuras en `Proyecto/Modelado/RESULTADOS.md` (y su versión co
 4. **Cambiar de fuente cuesta mucho** (CONDA a Jigsaw: de 0.87 a 0.64 con BERT y de 0.85 a 0.28 con la logística), y un modelo con las dos fuentes juntas no mejora a los modelos por fuente.
 5. **Las 4 clases de CONDA:** la clase implícita (I) es la más difícil para todos (F1 de 0.73 a 0.74); BERT no mejora a los lineales.
 6. **Los insultos con letras cambiadas (`1diot`, `f u c k`) engañan a casi todos los modelos** (BERT pasa de detectar el 97% a entre 19% y 78%). Normalizar el texto antes de los modelos lo corrige en gran parte sin reentrenar, y combinarlo con entrenamiento aumentado llega a 89% a 98% en los disfraces conocidos y a 75% en uno que no se vio, a cambio de 1 a 5 puntos más de falsos positivos.
+7. **Se puede bloquear menos grosería casual moviendo el umbral, casi sin perder F1 con la logística** (CONDA, umbral elegido en el dev): de 0.50 a 0.70 la casual bloqueada baja de 0.330 a 0.255 y la implícita detectada de 0.781 a 0.709, con el F1 tóxico en 0.850 a 0.859. Con BERT cuesta más (umbral 0.96, implícita 0.636).
+8. **Solo con mensajes cuyo texto no está en train** (4,917 de 7,569 en CONDA), todos los modelos pierden de 2 a 3 puntos de F1 tóxico (logística 0.825, BERT 0.835), pero el orden entre modelos y las conclusiones no cambian.
 
-Limitaciones principales: una sola partición, una sola semilla en BERT sobre Jigsaw y en la transferencia, sin ajuste de hiperparámetros ni de umbral, y las pruebas de ortografía alterada son sintéticas (sección 9 de `RESULTADOS.md`).
+Limitaciones principales: una sola partición, una sola semilla en BERT sobre Jigsaw, en la transferencia y en la curva de umbral, sin ajuste de hiperparámetros ni de umbral en las tablas principales, y las pruebas de ortografía alterada son sintéticas (sección 11 de `RESULTADOS.md`).
 
 ## Cómo reproducir (opcional)
 
@@ -70,6 +72,8 @@ Desde la raíz del repo, con `pip install -r requirements.txt`:
 | Transferencia entre fuentes | `python Proyecto/Modelado/06_transferencia.py` | 2 horas con GPU |
 | XGBoost | `python Proyecto/Modelado/07_xgboost.py` | 50 min (CPU) |
 | Robustez a ortografía alterada | `python Proyecto/Modelado/12_robustez.py` | 25 min con GPU |
+| Curva de umbral (CONDA) | `python Proyecto/Modelado/13_umbral.py` | menos de 1 min con GPU |
+| Mensajes no vistos (CONDA) | `python Proyecto/Modelado/14_no_vistos.py` | 20 min con GPU |
 | Figuras | `python Proyecto/Modelado/08_figuras.py` | segundos |
 | PDF con gráficas | `python Proyecto/Modelado/09_reporte_pdf.py` | segundos |
 

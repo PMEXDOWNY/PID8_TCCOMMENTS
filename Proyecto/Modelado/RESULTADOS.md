@@ -1,8 +1,8 @@
 # Resultados del modelado
 
-**Estado:** entregas del 28 de octubre y del 4 de noviembre completas: filtro de palabras, regresión logística, SVM lineal, XGBoost, BiGRU y BERT por fuente; las 4 clases de CONDA; el experimento de contexto; y el de transferencia entre fuentes. No se probó RoBERTa (el README pide "BERT o RoBERTa"; se usó BERT).
+**Estado:** entregas del 28 de octubre y del 4 de noviembre completas: filtro de palabras, regresión logística, SVM lineal, XGBoost, BiGRU y BERT por fuente; las 4 clases de CONDA; el experimento de contexto; y el de transferencia entre fuentes. No se probó RoBERTa (el README pide "BERT o RoBERTa"; se usó BERT). Después de la guía del 6 de noviembre se agregaron dos corridas: la **curva de umbral** (sección 9) y la tabla de **mensajes no vistos** (sección 10).
 
-Todo se reproduce desde la raíz del repo con los scripts de `Proyecto/Modelado/` (ver la sección 10), pero **correrlos es opcional**: las cifras y figuras ya están guardadas en `Resultados/` y los modelos de la demo ya vienen entrenados en el repo (con Git LFS). Las cifras salen de los CSV de `Resultados/`, y `Resultados/Reporte_de_resultados.pdf` es este mismo documento con sus figuras.
+Todo se reproduce desde la raíz del repo con los scripts de `Proyecto/Modelado/` (ver la sección 12), pero **correrlos es opcional**: las cifras y figuras ya están guardadas en `Resultados/` y los modelos de la demo ya vienen entrenados en el repo (con Git LFS). Las cifras salen de los CSV de `Resultados/`, y `Resultados/Reporte_de_resultados.pdf` es este mismo documento con sus figuras.
 
 ## 0. Respuesta corta a las tres preguntas del artículo
 
@@ -12,7 +12,9 @@ Todo se reproduce desde la raíz del repo con los scripts de `Proyecto/Modelado/
 
 **Extra: ¿y si se disfrazan las groserías (`1diot`, `f u c k`)?** Sin remedios, BERT pasa de detectar el 97% a entre 19% y 78%. Normalizar el texto antes de los modelos lo sube a 94% a 98% en cinco de las nueve familias probadas sin reentrenar, y combinarlo con entrenamiento aumentado lleva a 89% a 98% en las ocho familias conocidas y a 75% en la que no se ve (sección 8), a cambio de 1 a 5 puntos más de falsos positivos.
 
-Todas las respuestas tienen las limitaciones de la sección 9: una sola partición y, en la transferencia y en BERT sobre Jigsaw, una sola semilla.
+**Extra: ¿se puede bloquear menos grosería casual moviendo el umbral?** Sí, y casi gratis en F1. Con la logística, subir el umbral de 0.50 a 0.70 baja la grosería casual bloqueada de 0.330 a 0.255 y la toxicidad implícita detectada de 0.781 a 0.709, y el F1 tóxico no baja (0.850 a 0.859). Con BERT hace falta un umbral de 0.96 para llegar a 0.255 y la implícita cae a 0.636 (sección 9). **¿Y solo con mensajes que el modelo no vio en train?** Todos los modelos pierden de 2 a 3 puntos de F1 tóxico (la logística pasa de 0.848 a 0.825, BERT de 0.860 a 0.835), bloquean más grosería casual y detectan menos toxicidad implícita, pero el orden entre modelos y las conclusiones no cambian (sección 10).
+
+Todas las respuestas tienen las limitaciones de la sección 11: una sola partición y, en la transferencia y en BERT sobre Jigsaw, una sola semilla.
 
 ## 1. Cómo se hizo
 
@@ -241,14 +243,56 @@ Mensajes por familia: limpio 2000, leet 1256, espacios 1295, repeticion 1309, te
 
 **Qué usar.** Normalizar siempre, porque es gratis y no cambia el resultado con texto normal. Reentrenar con aumento si se acepta perder alrededor de un punto de F1 y tener más falsos positivos a cambio de más robustez. La demo normaliza por defecto, con una casilla para apagarlo y ver la diferencia.
 
-## 9. Limitaciones
+## 9. Curva de umbral: cuánta toxicidad implícita cuesta bloquear menos grosería casual
 
-- **Texto repetido entre train y test en CONDA:** 35.0% de los mensajes del test (2,652 de 7,569) tienen un texto idéntico en train, sobre todo "gg" (366), "lol" (187), "ez" (102) y "ggwp" (94). El split por partida evita mezclar partidas, pero no esto, y puede hacer las métricas de CONDA algo optimistas. En Jigsaw es 0.2% (99 de 39,892). No se reportaron las métricas solo sobre los mensajes cuyo texto no está en train.
+Hasta aquí todos los modelos predicen "tóxico" con el umbral por defecto (0.5). Aquí se mueve el umbral para ver el costo de cada decisión. Solo CONDA, con la regresión logística y BERT (semilla 42), los dos entrenados con el 80% de train. El 20% restante (dev, 5,222 mensajes: 153 de grosería casual y 436 de toxicidad implícita) **elige el umbral**, y lo que se reporta es lo que ese umbral da en el test (212 y 695 mensajes), una sola vez. Se probaron tres reglas: el umbral por defecto, el que maximiza el F1 tóxico en el dev y el umbral más bajo que deja la grosería casual bloqueada en 0.25 o menos en el dev.
+
+| Modelo | Regla para elegir el umbral (en dev) | Umbral | F1 tóxico | Grosería casual bloqueada | Toxicidad implícita detectada |
+|---|---|---|---|---|---|
+| Regresión logística | Umbral por defecto | 0.50 | 0.850 | 0.330 | 0.781 |
+| Regresión logística | Maximiza F1 en dev | 0.68 | 0.858 | 0.264 | 0.721 |
+| Regresión logística | Casual ≤ 0.25 en dev | 0.70 | 0.859 | 0.255 | 0.709 |
+| BERT (semilla 42) | Umbral por defecto | 0.50 | 0.860 | 0.439 | 0.745 |
+| BERT (semilla 42) | Maximiza F1 en dev | 0.71 | 0.868 | 0.382 | 0.719 |
+| BERT (semilla 42) | Casual ≤ 0.25 en dev | 0.96 | 0.851 | 0.255 | 0.636 |
+
+![Curva de umbral en CONDA: grosería casual bloqueada contra toxicidad implícita detectada, y F1 tóxico según el umbral](Resultados/fig_umbral.png)
+
+- **Con la logística, bloquear menos casual casi no cuesta F1.** Pasar de 0.50 a 0.70 baja la casual bloqueada en 0.075 y la implícita detectada en 0.072, y el F1 tóxico **sube** de 0.850 a 0.859. La curva de F1 es casi plana entre 0.4 y 0.85 de umbral: hay muchos puntos de operación con el mismo F1 pero distinta mezcla de errores.
+- **Con BERT cuesta más.** Para dejar la casual en 0.255 hay que subir el umbral a 0.96 (las probabilidades de BERT se saturan hacia 0 y 1), y la implícita cae a 0.636 y el F1 a 0.851.
+- **En ese tramo la logística domina a BERT.** Con la casual en 0.255, la logística detecta 0.709 de la implícita y BERT 0.636; la curva de BERT queda por debajo de la de la logística en casi todo el rango (figura), de acuerdo con su AUC-PR menor (sección 3). Que BERT tenga más F1 con el umbral por defecto no quiere decir que ordene mejor los mensajes de los dos grupos.
+- **El umbral elegido en dev se traslada bien al test:** en el dev esas reglas dejaban la casual en 0.248 (logística, umbral 0.70) y 0.229 (BERT, umbral 0.96), y en el test dieron 0.255 en los dos. Con grupos tan chicos (153 en dev y 212 en test) la diferencia de unos puntos no es firme.
+
+**Qué NO demuestra.** BERT es de **una sola semilla**: el BERT guardado para la demo (el que se usa aquí) da F1 0.860 con el umbral por defecto, y el de la misma semilla en la sección 2 (`03_bert.py`) da 0.869; la diferencia, de la misma magnitud que la variación entre semillas (0.858 a 0.869), viene de que son dos corridas de entrenamiento distintas. La logística de esta sección se entrena con el 80% de train (para tener un dev limpio) y no con todo train, así que su fila de umbral 0.50 difiere un poco de la sección 2 (F1 0.850 contra 0.848). Las probabilidades de los dos modelos no están calibradas (peso de clase balanceado): el umbral sirve para ordenar y comparar, no es una probabilidad real. Y la regla "casual ≤ 0.25" depende de un grupo de 153 mensajes en dev, así que el umbral exacto es ruidoso.
+
+## 10. Mensajes no vistos: la tabla principal solo con textos que no están en train
+
+En CONDA muchos mensajes se repiten literalmente ("gg", "lol", "ez"…), y si el mismo texto está en train y en test el modelo "lo recuerda". Aquí se repite la tabla de la sección 2 (misma partición por partida, mismos modelos e hiperparámetros) solo sobre los mensajes del test **cuyo texto, en minúsculas y sin espacios sobrantes, no aparece en train**: **4,917 de los 7,569** (65.0%). Entre ellos hay 173 mensajes de grosería casual y 482 de toxicidad implícita, y 24.7% son tóxicos (20.3% en todo el test).
+
+| Modelo | F1 tóxico (todo el test) | F1 tóxico (no vistos) | AUC-PR (no vistos) | Grosería casual bloqueada (no vistos) | Toxicidad implícita detectada (no vistos) |
+|---|---|---|---|---|---|
+| Filtro de palabras | 0.650 | 0.691 | 0.604 | 1.000 | 0.000 |
+| Regresión logística | 0.848 | 0.825 | 0.905 | 0.428 | 0.710 |
+| SVM lineal | 0.848 | 0.824 | 0.901 | 0.405 | 0.714 |
+| XGBoost | 0.858 | 0.833 | 0.898 | 0.410 | 0.639 |
+| BiGRU (media ± desv., 3 semillas) | 0.827 ± 0.008 | 0.796 ± 0.008 | 0.871 ± 0.006 | 0.395 ± 0.042 | 0.609 ± 0.032 |
+| BERT (media ± desv., 3 semillas) | 0.860 ± 0.002 | 0.835 ± 0.002 | 0.892 ± 0.011 | 0.461 ± 0.044 | 0.660 ± 0.047 |
+
+- **Todos los modelos entrenados pierden de 2 a 3 puntos de F1 tóxico:** logística 0.848 a 0.825, SVM 0.848 a 0.824, XGBoost 0.858 a 0.833, BiGRU 0.827 a 0.796 y BERT 0.860 a 0.835. Una parte del resultado de las secciones anteriores sí venía de textos repetidos, pero es poca.
+- **Bloquean más grosería casual y detectan menos toxicidad implícita.** Casual bloqueada: logística 0.373 a 0.428, SVM 0.354 a 0.405, XGBoost 0.354 a 0.410, BiGRU 0.344 a 0.395 y BERT 0.396 a 0.461. Implícita detectada: logística 0.784 a 0.710, SVM 0.787 a 0.714, XGBoost 0.732 a 0.639, BiGRU 0.712 a 0.609 y BERT 0.748 a 0.660. Los mensajes que no se parecen a nada de train son más difíciles, sobre todo los implícitos.
+- **Las conclusiones no cambian.** BERT (0.835) y XGBoost (0.833) siguen arriba en F1, la logística y el SVM (0.825 y 0.824) los siguen de cerca, el BiGRU queda último (0.796), y los lineales siguen detectando más toxicidad implícita que BERT y XGBoost (0.710-0.714 contra 0.660 y 0.639). Los AUC-PR de los lineales (0.901-0.905) siguen siendo mayores que el de BERT (0.892).
+- **El filtro de palabras sube de 0.650 a 0.691 de F1, pero no mejora:** entre los no vistos hay una proporción mayor de mensajes tóxicos (24.7% contra 20.3%), y eso por sí solo sube el F1 de cualquier clasificador. No se verificó con más detalle; sus dos tasas siguen siendo 1.000 y 0.000.
+
+**Qué NO demuestra.** Es la misma partición y las mismas semillas que antes, y los grupos de este subconjunto son más chicos (173 y 482 mensajes), así que las tasas tienen intervalos amplios. Los modelos de esta corrida se **reentrenaron** (`14_no_vistos.py`); sus cifras de "todo el test" coinciden con la sección 2 salvo diferencias pequeñas de reentrenamiento (por ejemplo, BERT 0.860 contra 0.865, porque aquí se entrena con `bert_util.py` y no con `03_bert.py`, y la diferencia queda dentro de la variación entre semillas). Un mensaje "no visto" tiene un texto distinto de cualquiera de train, pero puede ser casi igual (por ejemplo, con otra puntuación); no se midió la similitud.
+
+## 11. Limitaciones
+
+- **Texto repetido entre train y test en CONDA:** 35.0% de los mensajes del test (2,652 de 7,569) tienen un texto idéntico en train, sobre todo "gg" (366), "lol" (187), "ez" (102) y "ggwp" (94). El split por partida evita mezclar partidas, pero no esto, y puede hacer las métricas de CONDA algo optimistas. En Jigsaw es 0.2% (99 de 39,892). La sección 10 repite la tabla principal solo con los mensajes cuyo texto no está en train: los modelos pierden de 2 a 3 puntos de F1 tóxico y las conclusiones se mantienen.
 - **Una sola partición.** Los modelos lineales usan una sola semilla y no traen intervalo de confianza; BiGRU, BERT en CONDA, las 4 clases y el contexto traen la desviación entre 3 semillas, pero esa desviación no recoge la variación por cambiar la partición. Las tasas de CONDA de los lineales traen intervalo de Wilson y es amplio.
 - **BERT en Jigsaw y la transferencia son de una sola semilla**, sin desviación estándar. Los comentarios de Jigsaw se truncan a 128 tokens.
 - **XGBoost en Jigsaw** usó menos rasgos que los demás modelos (sección 7) y llegó casi al tope de árboles (598 de 600).
 - **Sin ajuste de hiperparámetros** en BiGRU, BERT y XGBoost (una sola configuración de cada uno), y los tres se entrenan con el 80% de train, a diferencia de los lineales, que se reajustan con todo train.
-- **Umbral de decisión no ajustado.** Todos los modelos predicen tóxico con el umbral por defecto y peso de clase balanceado. Las dos tasas de grupos cambian con el umbral, así que las diferencias entre modelos en esas tasas no son solo de calidad del modelo. Es especialmente visible al cambiar de fuente (sección 6).
+- **Umbral de decisión no ajustado en las tablas principales.** Todos los modelos predicen tóxico con el umbral por defecto y peso de clase balanceado. Las dos tasas de grupos cambian con el umbral, así que las diferencias entre modelos en esas tasas no son solo de calidad del modelo. Es especialmente visible al cambiar de fuente (sección 6). La sección 9 explora el umbral solo en CONDA, con la logística y una semilla de BERT.
 - **Las etiquetas de las dos fuentes no significan lo mismo** (`is_toxic` de CONDA = E o I; de Jigsaw = cualquiera de 6 banderas), así que las comparaciones entre fuentes (transferencia, conjunto) mezclan la calidad del modelo con la diferencia de definición.
 - **Las 4 clases de CONDA no se comparan exactamente con Weld:** otro split y otro modelo (el Joint BERT usa etiquetas por palabra).
 - **Contexto:** solo se da el texto de 1 o 3 mensajes previos de la misma conversación, sin metadatos, y la mediana de la conversación es de 2 mensajes.
@@ -259,7 +303,7 @@ Mensajes por familia: limpio 2000, leet 1256, espacios 1295, repeticion 1309, te
 - **Ortografía alterada:** se midió con alteraciones sintéticas (sección 8), no con personas reales intentando burlar el filtro; los remedios funcionan bien con los disfraces que contemplan y poco con los que no, y cuestan falsos positivos.
 - **No se probó RoBERTa.**
 
-## 10. Archivos
+## 12. Archivos
 
 Todos los scripts corren desde la raíz del repo. Los experimentos con BERT necesitan `torch` y `transformers` y usan la GPU si hay.
 
@@ -281,3 +325,5 @@ Todos los scripts corren desde la raíz del repo. Los experimentos con BERT nece
 | `perturbar.py` | Generador de ortografía alterada: sirve para las pruebas y para aumentar los datos de entrenamiento. |
 | `10_entrenar_demo.py` | Entrena y guarda en `Demo/modelos/` los modelos de CONDA que usa la demo (los mismos que se evaluaron; ~12 minutos con GPU). Los `.pt` (~630 MB en total) están en el repo con Git LFS, así que normalmente no hace falta correrlo (ver `Demo/LEEME.md`). |
 | `11_demo.py` | Demo local: escribes un mensaje y ves qué dice cada modelo (`http://127.0.0.1:8765`). Instrucciones y advertencias en `Demo/LEEME.md`. |
+| `13_umbral.py` | Curva de umbral en CONDA (sección 9): logística y BERT (el de la demo), umbral elegido en el dev. Tarda menos de un minuto. Salida: `Resultados/resultados_umbral.csv` y `.md`, `fig_umbral.png`. |
+| `14_no_vistos.py` | Tabla principal de CONDA solo con mensajes cuyo texto no está en train (sección 10). Reentrena los seis modelos (~20 minutos con GPU) y guarda las predicciones en `Resultados/predicciones_no_vistos.npz`; con `--solo-tablas` regenera las tablas sin reentrenar. Salida: `Resultados/resultados_no_vistos.csv` y `.md`. |
